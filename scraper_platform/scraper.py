@@ -43,4 +43,5 @@ class Scraper(object):
             sys.stdout.flush()
 
         pool.join()
+        sys.stdout.write('\r' + f"{completed/len(lst)*100:.0f}% done. {len(lst)-completed} left. ")
         return list(result)
