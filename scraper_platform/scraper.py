@@ -3,23 +3,22 @@ from multiprocessing.dummy import Pool as ThreadPool
 
 
 class Scraper(object):
-    def __init__(self, threads, cache):
+    def __init__(self, threads):
         self.threads = threads
-        self.cache = cache
 
     def __repr__(self):
-        return f'<Scraper object: max {self.threads} threads, {"cached" if self.cache else "uncached"}>'
+        return f'<Scraper object: max {self.threads} threads>'
 
-    def scrape(self, lst: list, function, processes: int):
+    def scrape(self, lst: list, function):
         """Handles multiprocessing using ThreadPool; sends items from a list to a function and gets the results as a list"""
-        # Define the number of processes, use less than or equal to the defined value
-        count_threads = min(processes, len(lst))
+        # Define the number of threads, use less than or equal to the defined value
+        count_threads = min(self.threads, len(lst))
         if count_threads == 0:
                 return []
         pool = ThreadPool(count_threads)
 
         # Tell the user what is happening
-        print(f"Scraping {len(lst)} items using {function} in {count_threads} processes.")
+        print(f"Scraping {len(lst)} items using {function} in {count_threads} threads.")
 
         # Calls function() and adds the filesize returned each call to an lst
         result = (pool.imap_unordered(function, lst))
