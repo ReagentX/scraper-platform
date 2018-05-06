@@ -33,10 +33,6 @@ class HTMLCache(object):
                     request = requests.get(url)
                     html = request.content.decode('utf-8')
 
-                    # HLTV has a custom error page for HTTP errors
-                    if len(re.findall('error-desc', html)) > 0 or len(re.findall('error-500', html)) > 0:
-                        return None
-
                 # Handle any other errors
                 except:
                     print(f"URL error for {url}")
