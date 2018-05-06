@@ -8,6 +8,7 @@ class HTMLCache(object):
     def __init__(self, expiry: timedelta, cache: bool):
         self.expiry = expiry
         self.cache = cache
+        requests_cache.install_cache(expire_after=self.expiry)
 
     def __repr__(self):
         return f'<HTMLCache object: expiry: {self.expiry}, {"cached" if self.cache else "uncached"}>'
