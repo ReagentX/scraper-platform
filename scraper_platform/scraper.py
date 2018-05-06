@@ -3,6 +3,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 
 
 class Scraper(object):
+    '''Scraper class that handles multiprocessing of scraper requests.'''
     def __init__(self, threads):
         self.threads = threads
 

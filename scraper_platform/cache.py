@@ -5,6 +5,7 @@ import requests_cache
 
 
 class HTMLCache(object):
+    '''Object that creates an HTMLCache that we can pass to Rules objects to use.'''
     def __init__(self, expiry: timedelta, cache: bool):
         self.expiry = expiry
         self.cache = cache
