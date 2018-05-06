@@ -5,3 +5,4 @@ lib/*
 *.pyc
 scraper_platform.egg-info/*
 pip-selfcheck.json
+cache.sqlite
