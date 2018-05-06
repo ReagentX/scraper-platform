@@ -11,5 +11,5 @@ class Rules(object):
 
     def get_links(self, url: str):
         html = self.cache.get_html(url)
-        data = re.findall('<span(.*?)</span>', html)
+        data = re.findall('(?:http://|https://)(.*?)>', html)
         return data
