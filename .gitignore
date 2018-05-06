@@ -2,3 +2,6 @@ bin/*
 lib/*
 .vscode/*
 *.cfg
+*.pyc
+scraper_platform.egg-info/*
+pip-selfcheck.json
