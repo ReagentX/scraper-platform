@@ -8,7 +8,7 @@ class Scraper(object):
         self.cache = cache
 
     def __repr__(self):
-        return f'<scraper object: max {self.threads} threads, {"cached" if self.cache else "uncached"}>'
+        return f'<Scraper object: max {self.threads} threads, {"cached" if self.cache else "uncached"}>'
 
     def scrape(self, lst: list, function, processes: int):
         """Handles multiprocessing using ThreadPool; sends items from a list to a function and gets the results as a list"""
