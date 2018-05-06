@@ -14,10 +14,10 @@ print(c)
 
 # URL to test
 urls = [
-    'http://chrissardegna.com/blog/posts/using-excel-tableau-visualize-trends-merit-badge-data/',
-    'http://chrissardegna.com/blog/posts/csgo-player-consistency-2017/',
-    'http://chrissardegna.com/blog/posts/problems-with-csgo-rating-systems/',
-    'http://chrissardegna.com/blog/posts/ecs-season-season-three-by-the-numbers/'
+    'https://store.google.com/category/phones',
+    'https://store.google.com/category/home_entertainment',
+    'https://store.google.com/category/laptops_tablets',
+    'https://store.google.com/category/virtual_reality'
 ]
 
 # Create the rules object based on the above cache object
