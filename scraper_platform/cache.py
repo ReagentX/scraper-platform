@@ -1,7 +1,10 @@
-import re
+import time
 from datetime import timedelta
 import requests
 import requests_cache
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class HTMLCache(object):
@@ -14,8 +17,31 @@ class HTMLCache(object):
     def __repr__(self):
         return f'<HTMLCache object: expiry: {self.expiry}, {"cached" if self.cache else "uncached"}>'
 
-    def get_html(self, url):
-        """Gets the HTML of a webpage, decoded as UTF-8 and handles any HTTP errors"""
+    def create_browser(self):
+        '''Creates a Chromium instance with some basic settings to load data into.'''
+        # Set capabilities
+        capabilities = DesiredCapabilities().CHROME
+        capabilities["pageLoadStrategy"] = "normal"
+
+        # Set options
+        options = webdriver.ChromeOptions()
+        prefs = {'profile.managed_default_content_settings.images': 2, 'user-data-dir': 'C/'}
+        options.add_experimental_option("prefs", prefs)
+
+        return webdriver.Chrome(chrome_options=options, desired_capabilities=capabilities)
+
+    def get_dynamic_html(self, url: str, delay=0):
+        '''Gets the dynamic HTML of the page using a Chromium instance. Delay is how long we wait in seconds after page load to capture data.'''
+        # Get the cache working here using selenium
+        driver = self.create_browser()
+        driver.get(url)
+
+        # "Hack" to make the page fully load
+        time.sleep(delay)
+        return driver.page_source
+
+    def get_html(self, url: str):
+        """Gets the HTML of a webpage using requests, decode as UTF-8 and handle any HTTP errors"""
         if self.cache:
             try:
                 # GET the webpage
